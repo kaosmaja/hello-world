@@ -24,11 +24,6 @@ public class SignupController {
         return "index";
     }
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
-    
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     public String loadForm() {
         return "form";
@@ -39,5 +34,19 @@ public class SignupController {
         signupRepository.save(new Signup(name, address));
         return "done";
     }
-
-}
+    
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginForm(@RequestParam String account, @RequestParam String passw){
+        return "admin";
+    }
+    
+    @RequestMapping(value = "/admin/*", method = RequestMethod.DELETE)
+    public void shutdown(){
+        System.exit(1);
+    }
+}   
